@@ -68,7 +68,7 @@ def load_data(batch_size, mixup, vFlip, rotation):
         n_data = (train_generator.n, validation_generator.n)
     return (train_generator, validation_generator, n_data)
 
-def construct_model(inceptionModel, batch_size, LR):
+def construct_model(inceptionModel, batch_size, LR, freezeEarlyLayers = False):
     from keras.layers import Activation, Dropout, Flatten, Dense, GlobalAveragePooling2D
     from keras.models import Model
     from keras import optimizers
@@ -92,7 +92,8 @@ def construct_model(inceptionModel, batch_size, LR):
     # Final Model
     model = Model(inputs=base_model.input, outputs=fine_tune_layer)
 
-    if inceptionModel:
+    # Freeze early layers
+    if freezeEarlyLayers:
         for layer in model.layers[:25]:
             layer.trainable = False
 
