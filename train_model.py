@@ -9,7 +9,7 @@
 #
 # Note 1:  This uses Inception preprocessing for both Inception and Resnet.
 #          This is because it is easy to deprocess, and these images are so unlike
-#          ImageNet images that it didn't appear the specific preprocessing mattered much.
+#          ImageNet images that it didn't appear the specific preprocessing mattered to performance.
 #
 # Note 2: I know it is gross and unpythonic that I am importing only some modules up top
 # and others inside the functions.
