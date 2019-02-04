@@ -34,14 +34,16 @@ Important note:  Please do not use this data to build clinically deployable mode
 
 I provide numpy arrays for the validation sets for each of the above datasets [here](https://www.dropbox.com/sh/tg6xij9hhfzgio9/AADqu6BMq3Rko7U7-q6vwmMFa?dl=0).  (Training sets are too big).
 
+### Models
+
+If you want to skip the training steps, I provide the keras models (in the case of white-box models) and keras model weights (for the separately trained black-box models) for each of the three tasks [here](https://www.dropbox.com/sh/8a9j9773c1sejol/AAAEvXDafJCPbq5YOBRG4wx0a?dl=0).
+
 
 ## Training the models
 
 [train_model.py](train_models/train_model.py) is a stand-alone python script that will train and save a model for one of the tasks.  To run the model, simply place any of the above data folders at the location `images/train`and `images/val` relative to the python script's working directory.  Alternatively, numpy data blobs of all the images in your training/test sets can be placed at (`data/train_x.npy`, 'data/train_y.npy', 'data/test_x.npy', 'data/test_y.npy').
 
 The training script has a number of options, including whether to train inception or resnet models (in the paper I only report results for Resnet for simplicity, but results on Inception were identical), learning rates, early stopping, various data augmentations, etc.  In practice, I got good enough results with the defaults I loaded in here so I didn't do much by way of hyperparameter tuning, but I include more functionality in case it's helpful.
-
-In addition, I provide the models (in the case of white-box models) and model weights (for the separately trained black-box models) for each of the three models [here](https://www.dropbox.com/sh/8a9j9773c1sejol/AAAEvXDafJCPbq5YOBRG4wx0a?dl=0).
 
 Dependencies: requires Python3, keras, tensorflow, and numpy.
 
