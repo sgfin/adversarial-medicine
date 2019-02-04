@@ -30,7 +30,7 @@ Important note:  Please do not use this data to build clinically deployable mode
 
 ### Numpy Arrays
 
-I provide numpy arrays for the validation sets for each of the above datasets [here](https://www.dropbox.com/sh/tg6xij9hhfzgio9/AADqu6BMq3Rko7U7-q6vwmMFa?dl=0).  (Training sets are too big).
+I also provide numpy arrays for the validation sets for each of the above datasets [here](https://www.dropbox.com/sh/tg6xij9hhfzgio9/AADqu6BMq3Rko7U7-q6vwmMFa?dl=0).  (Training sets are too big).  These numpy validation sets, along with the keras models below, are sufficient to run the Jupyter notebooks generating the figures.
 
 ### Models
 
