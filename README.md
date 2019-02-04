@@ -14,19 +14,9 @@ All of the data used in the project is publically available, as outlined in the 
 [Melanoma Data](https://www.dropbox.com/sh/bryrme8sr0ry091/AABtSGGzjBf5UIr8Ae-G6gdva?dl=0)
 
 
-Each of the above folders follows the same subdirectory structure:
+Each of the above folders follows the same subdirectory structure:  `train` and `val` directories which each contain `1_case` and `0_control` subdirectories.  The "1_case" subdirectories contain the individual image files with pneumothorax, referable retinopathy, or melanoma, whereas the "0_control" subdirectories contain the individual files corresponding to normal chest-x rays, non-referable fundoscopy, or melanocytic nevi.
 
-`train/0_control`
-
-`train/1_case`
-
-`val/0_control`
-
-`val/1_case`
-
-where the "0_control" subdirectories contain the individual image files with pneumothorax, referable retinopathy, or melanoma.
-
-Important note:  Please do not use this data to build clinically deployable models.  I was using the data as a proof of concept, and as such didn't fuss too much about verifying the accuracy of the labels, but couldn't help but stumble upon a number of errors in the provided labels.
+Important note:  Please do not use this data to build clinically deployable models.  I was using the data as a proof of concept, and as such didn't fuss too much about verifying the accuracy of the labels too much.  That said, I couldn't help but stumble upon a number of errors in the provided labels, particularly from the DR kaggle dataset -- so user beware!
 
 ### Numpy Arrays
 
