@@ -15,8 +15,11 @@ The data is far too large for Github, so I am provided it in the form of dropbox
 Each of the above folders is organized in the same way:
 
 `train/0_control`
+
 `train/1_case`
+
 `val/0_control`
+
 `val/1_case`
 
 where the "0_control" subdirectories contain the image files with pneumothorax, referable retinopathy, or melanoma.
