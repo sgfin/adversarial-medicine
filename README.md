@@ -5,9 +5,7 @@ This repository contains the code used to train the proof-of-concept models and 
 ## Data 
 
 ### Raw Images
-All of the data used in the project is publically available, as outlined in the paper.  However, to spare people the pain, I'll provide links to the data folders
-
-The data is far too large for Github, so I am provided it in the form of dropbox links.
+All of the data used in the project is publically available, as outlined in the paper.  However, to spare people the pain of all the data munging and organizing, I'll provide links to the already-processed data folders below. The data is far too large for Github, so I am provided it in the form of dropbox links:
 
 [CXR Data](https://www.dropbox.com/sh/w0r19j8fd2d7m33/AAAFPDzux_aWQsFP_a0f498Ta?dl=0)
 
