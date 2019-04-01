@@ -651,7 +651,7 @@ def report(model, target_ys, n_images=3, n_show=5, scale=0.5, predict_original=F
         probs_original_images, true_labels = predict_original_images()
     else:
         file_name = model.model_name + '_model_prediction_original_test_images.npy'
-        probs_original_images = np.load('./etc_saved_files_patch/' + file_name)
+        probs_original_images = np.load('./etc_saved_files/' + file_name)
         probs_original_images = probs_original_images[random_indices]
         true_labels = np.argmax(image_loader.y_test[random_indices], axis=1)
         
@@ -692,7 +692,7 @@ def report_opp(model, target_label, target_ys=None, n_show=5, scale=0.5, show_in
         probs_original_images, true_labels = predict_original_images()
     else:
         file_name = model.model_name + '_model_prediction_original_test_images.npy'
-        probs_original_images = np.load('./etc_saved_files_patch/' + file_name)
+        probs_original_images = np.load('./etc_saved_files/' + file_name)
         probs_original_images = probs_original_images[indices]
         true_labels = np.argmax(image_loader.y_test[indices], axis=1)
         
