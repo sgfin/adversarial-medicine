@@ -47,6 +47,14 @@ Dependencies: requires Python3, keras, tensorflow, cleverhans, numpy, scipy, skl
 
 ## Recreating Patch Attacks and Figures 
 
-The patch attacks were largely developed by my colleague [Hyung Won Chung](https://scholar.google.com/citations?user=1CAlXvYAAAAJ&hl=en).  The bulk of the functionality is developed in [execute_patch_attacks.py](patch_attacks/execute_patch_attacks.py) and [patch_derm_v3.py](patch_attacks/patch_derm_v3.py).  The file [0_generate_patch_results_derm.ipynb](patch_attacks/0_generate_patch_results_derm.ipynb) is a Jupyter notebook that generates the figures for the derm patches.  The similarly named [1_generate_patch_results_cxr.ipynb](patch_attacks/1_generate_patch_results_cxr.ipynb) and [1_generate_patch_results_dr.ipynb](patch_attacks/1_generate_patch_results_dr.ipynb) are similar notebooks that generate the results for DR and Chest-xrays. 
+The patch attacks were largely developed by my colleague [Hyung Won Chung](https://github.com/hwc27). The bulk of the functionality is developed in [execute_patch_attacks.py](patch_attacks/execute_patch_attacks.py) and [craft_attack_patch.py](patch_attacks/craft_attach_patch.py).  
+
+There are two options to explore the patch attack: 1) Jupyter Notebook interface and directly running [craft_attack_patch.py](patch_attacks/craft_attach_patch.py).
+
+1) Notebook
+The file [0_generate_patch_results_derm.ipynb](patch_attacks/0_generate_patch_results_derm.ipynb) is a Jupyter notebook that generates the figures for the derm patches.  The similarly named [1_generate_patch_results_cxr.ipynb](patch_attacks/1_generate_patch_results_cxr.ipynb) and [1_generate_patch_results_dr.ipynb](patch_attacks/1_generate_patch_results_dr.ipynb) are similar notebooks that generate the results for DR and Chest-xrays. 
+
+2) [craft_attack_patch.py](patch_attacks/craft_attack_patch.py).
+This file can be used stand-alone and does not require any command-line argument. So just run it via `python craft_attack.py`. To faciliate testing the functionality, we have included sample train and test images (8 images for each label) for Melanoma. For training the patch, use the full [Data](#data). We couldn't include the pretrained models object due to size. Create a directory `models` and put the model objects. For example, download the [Pretrained Keras models](#pretrained-keras-models) and put both files in the `models` directory.
 
 Dependencies: requires Python3, keras, tensorflow, cleverhans, numpy, scipy, sklearn.
