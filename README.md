@@ -47,7 +47,7 @@ Dependencies: requires Python3, keras, tensorflow, cleverhans, numpy, scipy, skl
 
 ## Recreating Patch Attacks and Figures 
 
-The patch attacks were largely developed by my colleague [Hyung Won Chung](https://github.com/hwc27). The bulk of the functionality is developed in [execute_patch_attacks.py](patch_attacks/execute_patch_attacks.py) and [craft_attack_patch.py](patch_attacks/craft_attack_patch.py).  
+The patch attacks were largely developed by [Hyung Won Chung](https://github.com/hwc27). The bulk of the functionality is developed in [execute_patch_attacks.py](patch_attacks/execute_patch_attacks.py) and [craft_attack_patch.py](patch_attacks/craft_attack_patch.py).  
 
 There are two options to explore the patch attack: Jupyter Notebook interface and directly running [craft_attack_patch.py](patch_attacks/craft_attack_patch.py).
 
