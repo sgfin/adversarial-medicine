@@ -47,9 +47,9 @@ Dependencies: requires Python3, keras, tensorflow, cleverhans, numpy, scipy, skl
 
 ## Recreating Patch Attacks and Figures 
 
-The patch attacks were largely developed by my colleague [Hyung Won Chung](https://github.com/hwc27). The bulk of the functionality is developed in [execute_patch_attacks.py](patch_attacks/execute_patch_attacks.py) and [craft_attack_patch.py](patch_attacks/craft_attach_patch.py).  
+The patch attacks were largely developed by my colleague [Hyung Won Chung](https://github.com/hwc27). The bulk of the functionality is developed in [execute_patch_attacks.py](patch_attacks/execute_patch_attacks.py) and [craft_attack_patch.py](patch_attacks/craft_attack_patch.py).  
 
-There are two options to explore the patch attack: 1) Jupyter Notebook interface and directly running [craft_attack_patch.py](patch_attacks/craft_attach_patch.py).
+There are two options to explore the patch attack: Jupyter Notebook interface and directly running [craft_attack_patch.py](patch_attacks/craft_attack_patch.py).
 
 1) Notebook
 The file [0_generate_patch_results_derm.ipynb](patch_attacks/0_generate_patch_results_derm.ipynb) is a Jupyter notebook that generates the figures for the derm patches.  The similarly named [1_generate_patch_results_cxr.ipynb](patch_attacks/1_generate_patch_results_cxr.ipynb) and [1_generate_patch_results_dr.ipynb](patch_attacks/1_generate_patch_results_dr.ipynb) are similar notebooks that generate the results for DR and Chest-xrays. 
