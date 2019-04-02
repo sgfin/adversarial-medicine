@@ -1,4 +1,4 @@
-
+from craft_attack_patch import *
 
 
 def mean_ci(x):
@@ -26,7 +26,6 @@ if __name__ == '__main__':
     import os
     os.environ["CUDA_VISIBLE_DEVICES"]="1"
     os.chdir("/home/sgf2/DBMI_server/adversarial_attacks/retinopathy/")
-    from patch_derm_v2 import *
 
     # Hyperparameters
     epochs = 7
