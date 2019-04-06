@@ -5,22 +5,20 @@ This repository contains the code used to train the proof-of-concept models and 
 ## Data 
 
 ### Raw Images
-All of the data used in the project is publically available, as outlined in the paper.  However, to spare people the pain of all the data munging and organizing, I'll provide links to the already-processed data folders below. The data is far too large for Github, so I am provided it in the form of dropbox links:
+All of the data used in the project is publically available, as outlined in the paper.  The original sources are below:
 
-[CXR Data](https://www.dropbox.com/sh/w0r19j8fd2d7m33/AAAFPDzux_aWQsFP_a0f498Ta?dl=0)
+[CXR Data](http://academictorrents.com/details/557481faacd824c83fbf57dcf7b6da9383b3235a)
 
-[DR Data](https://www.dropbox.com/sh/tpeh0ktsurzubz5/AAAVPMKA-FaRDlGeyRfGn-vXa?dl=0)
+[DR Data](https://www.kaggle.com/c/diabetic-retinopathy-detection)
 
-[Melanoma Data](https://www.dropbox.com/sh/bryrme8sr0ry091/AABtSGGzjBf5UIr8Ae-G6gdva?dl=0)
+[Melanoma Data](https://www.isic-archive.com/#!/topWithHeader/onlyHeaderTop/gallery)
 
+As outlined in the paper, regardless of any train/test splits in the original datasets, I merged all the images together and split by patient into ~80/20 train/test splits.  The DR Kaggle repo in particular was *way* too test-heavy in their train/test split for my purposes.
 
-Each of the above folders follows the same subdirectory structure:  `train` and `val` directories which each contain `1_case` and `0_control` subdirectories.  The "1_case" subdirectories contain the individual image files with pneumothorax, referable retinopathy, or melanoma, whereas the "0_control" subdirectories contain the individual files corresponding to normal chest-x rays, non-referable fundoscopy, or melanocytic nevi.
-
-Important note:  Please do not use this data to build clinically deployable models.  I was using the data as a proof of concept, and as such didn't fuss too much about verifying the accuracy of the labels too much.  That said, I couldn't help but stumble upon a number of errors in the provided labels, particularly from the DR kaggle dataset -- so user beware!
 
 ### Numpy Arrays
 
-I also provide numpy arrays for the validation sets for each of the above datasets [here](https://www.dropbox.com/sh/tg6xij9hhfzgio9/AADqu6BMq3Rko7U7-q6vwmMFa?dl=0).  (Training sets are too big).  These numpy validation sets, along with the keras models below, are sufficient to run the Jupyter notebooks generating the figures.
+To make it easier to recreating the results in this repo, I also provide numpy arrays for the validation sets for each of the above datasets [here](https://www.dropbox.com/sh/tg6xij9hhfzgio9/AADqu6BMq3Rko7U7-q6vwmMFa?dl=0).  (Training sets are too big).  These numpy validation sets, along with the keras models below, are sufficient to run the Jupyter notebooks generating the figures and python script generating the tables.
 
 ## Models
 
@@ -28,11 +26,13 @@ I also provide numpy arrays for the validation sets for each of the above datase
 
 If you want to skip the training steps, I provide the keras models (in the case of white-box models) and keras model weights (for the separately trained black-box models) for each of the three tasks [here](https://www.dropbox.com/sh/8a9j9773c1sejol/AAAEvXDafJCPbq5YOBRG4wx0a?dl=0).
 
+Note: *please* don't try to use these for any medical purposes. I noticed some big problems in these datasets and do not trust them for more than proofs of concept.
+
 ### Code to recreate the models
 
-[train_model.py](train_models/train_model.py) is a stand-alone python script that will train and save a model for one of the tasks.  To run the model, simply place any of the above data folders at the location `images/train`and `images/val` relative to the python script's working directory.  Alternatively, numpy data blobs of all the images in your training/test sets can be placed at (`data/train_x.npy`, 'data/train_y.npy', 'data/test_x.npy', 'data/test_y.npy').
+[train_model.py](train_models/train_model.py) is a stand-alone python script that will train and save a model for one of the tasks.  The model assumes that images are organized in folders at the locations `images/train`and `images/val` relative to the python script's working directory.  Alternatively, numpy data blobs of all the images in your training/test sets can be placed at (`data/train_x.npy`, 'data/train_y.npy', 'data/test_x.npy', 'data/test_y.npy').
 
-The training script has a number of options, including whether to train inception or resnet models (in the paper I only report results for Resnet for simplicity, but results on Inception were identical), learning rates, early stopping, various data augmentations, etc.  In practice, I got good enough results with the defaults I loaded in here so I didn't do much by way of hyperparameter tuning, but I include more functionality in case it's helpful.
+The training script has a number of options, including whether to train inception or resnet models (in the paper I only report results for Resnet for simplicity, but results on Inception were ~identical), learning rates, early stopping, various data augmentations, etc.  In practice, I got good enough results with the defaults I loaded in here so I didn't do much by way of hyperparameter tuning, so I'm sure a lot more performance could get squeezed out of the models.
 
 Dependencies: requires Python3, keras, tensorflow, and numpy.
 
