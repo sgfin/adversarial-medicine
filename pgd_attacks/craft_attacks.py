@@ -31,7 +31,7 @@ from sklearn.metrics import auc
 from copy import copy
 
 # Undo the inception preprocessing
-def deprocess_inception(y, rescale = false):
+def deprocess_inception(y, rescale = False):
     x = copy(y).astype(np.float)
     x += 1.
     x /= 2.
@@ -167,7 +167,9 @@ def evaluate(model, sess, x, X_test, y_test, X_test_adv, attackType, print_image
     print("Adversarial Examples:")
     model_preds = batch_eval(sess, [x], [model(x)], [X_test_adv], args=eval_par)[0]
     printResults(model_preds, y_test)
-    np.save( "data/pgd_preds_" + attackType + ".npy" , model_preds)
+
+    if saveFlag:
+        np.save( "data/pgd_preds_" + attackType + ".npy" , model_preds)
 
     # Calculate L2 norm of pertrubations
     l2_norm = np.sum((X_test_adv - X_test)**2, axis=(1, 2, 3))**.5
@@ -200,17 +202,22 @@ def evaluate(model, sess, x, X_test, y_test, X_test_adv, attackType, print_image
 if __name__ == '__main__':
     # Set up argparser
     parser = argparse.ArgumentParser(description='Build adversarial attakcs')
-    parser.add_argument("--pathModel", type=str, default="models/wb_model.h5", #melan_resnet_mixup_SGD_1E3_m09_DO2_260epochs.h5
+    parser.add_argument("--pathModel", type=str, default="models/wb_model.h5", 
         help="Path to .h5 file for true model (default: models/wb_model.h5)")
     parser.add_argument("--pathWBWeights", type=str, default=None, #models/wb_weights.hdf5
         help="Optionally provide path to weights to load into WB model (default: None)")
-    parser.add_argument("--pathBBWeights", type=str, default="models/bb_weights.hdf5", #ResNet50_LR-0.001_max_epochs-250_weights_final.hdf5
+    parser.add_argument("--pathBBWeights", type=str, default="models/bb_weights.hdf5", 
         help="Path to weights for independent BB model (default: models/bb_weights.hdf5)")
+    parser.add_argument("--pathDataX", type=str, default="data/val_test_x_preprocess.npy", 
+        help="Path to training data X (default: data/val_test_x_preprocess.npy)")
+    parser.add_argument("--pathDataY", type=str, default="data/val_test_y.npy", 
+        help="Path to training labels y (default: data/val_test_y.npy)")
     parser.add_argument("--limit100", action='store_true', default=False, help="Only attack 50 examples from each class")
     parser.add_argument('--eps', type=float, default = 0.02, help = "Epsilon parameter of PGD (default: 0.02)")
     parser.add_argument("--filename", type=str, default="data/pgd_eps02_", help="Base of filename to save model (default: 'data/pgd_eps02_')")
     parser.add_argument("--print_image_index", type=int, nargs = "*", default=None, help="Image indices to save to file in addition to the most perturbed. (default: None)")
     parser.add_argument("--gpu1", action='store_true', default=False, help="Use GPU 1, else use GPU zero")
+    parser.add_argument("--dontSaveResults", action='store_true', default=False, help="Save results (default: true)")
 
     # Get Arguments
     args = parser.parse_args()
@@ -219,7 +226,10 @@ if __name__ == '__main__':
     pathModel = args.pathModel
     pathBBWeights = args.pathBBWeights
     pathWBWeights = args.pathWBWeights
+    pathDataX = args.pathDataX
+    pathDataY = args.pathDataY
     limit100 = args.limit100
+    saveResults = not args.dontSaveResults
     print_image_index = args.print_image_index
     if limit100:
         filename += "small_"
@@ -243,31 +253,27 @@ if __name__ == '__main__':
     y = tf.placeholder(tf.float32, shape=(None, 2))
 
     # Run attack
-    (X_test, y_test) = load_data(limit100)
+    (X_test, y_test) = load_data(limit100, x_path = pathDataX, y_path = pathDataY)
 
     # Black box
     print("\nBlack Box Attack:")
     model = build_model(pathModel, pathBBWeights)
     X_test_adv_bb = createAttack(model, sess, x, y, X_test, y_test, eps)
-    print("Saving to : ", filename + 'BlackBox.npy')
-    np.save(filename + 'BlackBox.npy', X_test_adv_bb)
+    if saveResults:
+        print("Saving to : ", filename + 'BlackBox.npy')
+        np.save(filename + 'BlackBox.npy', X_test_adv_bb)
 
     # White box
     print("\n\nWhite Box Attack:")
     model = build_model(pathModel, pathWBWeights)
     X_test_adv_wb = createAttack(model, sess, x ,y, X_test, y_test, eps)
-    print("Saving to : ", filename + 'WhiteBox.npy')
-    np.save(filename + 'WhiteBox.npy', X_test_adv_wb)
+    if saveResults:
+        print("Saving to : ", filename + 'WhiteBox.npy')
+        np.save(filename + 'WhiteBox.npy', X_test_adv_wb)
 
     # Evaluate
     print("\n_____Evaluate White Box Attack_____")
-    evaluate(model, sess, x, X_test, y_test, X_test_adv_wb, "pgdWhiteBox", testClean = True) #print_image_index
+    evaluate(model, sess, x, X_test, y_test, X_test_adv_wb, "pgdWhiteBox", testClean = True, saveFlag = saveResults) #print_image_index
 
     print("\n_____Evaluate Black Box Attack_____")
-    evaluate(model, sess, x, X_test, y_test, X_test_adv_bb, "pgdBlackBox") #print_image_index
-
-
-
-
-
-
+    evaluate(model, sess, x, X_test, y_test, X_test_adv_bb, "pgdBlackBox", saveFlag = saveResults) #print_image_index
