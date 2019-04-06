@@ -1,0 +1,52 @@
+name: adversarial
+channels:
+  - defaults
+dependencies:
+  - _tflow_select=2.1.0=gpu
+  - absl-py=0.7.0=py36_0
+  - astor=0.7.1=py36_0
+  - blas=1.0=mkl
+  - c-ares=1.15.0=h7b6447c_1
+  - ca-certificates=2019.1.23=0
+  - certifi=2019.3.9=py36_0
+  - cudatoolkit=9.2=0
+  - cudnn=7.3.1=cuda9.2_0
+  - cupti=9.2.148=0
+  - gast=0.2.2=py36_0
+  - grpcio=1.16.1=py36hf8bcb03_1
+  - intel-openmp=2019.3=199
+  - libedit=3.1.20181209=hc058e9b_0
+  - libffi=3.2.1=hd88cf55_4
+  - libgcc-ng=8.2.0=hdf63c60_1
+  - libgfortran-ng=7.3.0=hdf63c60_0
+  - libprotobuf=3.6.1=hd408876_0
+  - libstdcxx-ng=8.2.0=hdf63c60_1
+  - markdown=3.0.1=py36_0
+  - mkl=2019.3=199
+  - mkl_fft=1.0.10=py36ha843d7b_0
+  - mkl_random=1.0.2=py36hd81dba3_0
+  - ncurses=6.1=he6710b0_1
+  - numpy=1.16.2=py36h7e9f1db_0
+  - numpy-base=1.16.2=py36hde5b4d6_0
+  - openssl=1.1.1b=h7b6447c_1
+  - pip=19.0.3=py36_0
+  - protobuf=3.6.1=py36he6710b0_0
+  - python=3.6.8=h0371630_0
+  - readline=7.0=h7b6447c_5
+  - scikit-learn=0.20.3=py36hd81dba3_0
+  - scipy=1.2.1=py36h7c811a0_0
+  - setuptools=40.8.0=py36_0
+  - six=1.12.0=py36_0
+  - sqlite=3.27.2=h7b6447c_0
+  - tensorboard=1.10.0=py36hf484d3e_0
+  - tensorflow=1.10.0=gpu_py36hcebf108_0
+  - tensorflow-base=1.10.0=gpu_py36had579c0_0
+  - tensorflow-gpu=1.10.0=hf154084_0
+  - termcolor=1.1.0=py36_1
+  - tk=8.6.8=hbc83047_0
+  - werkzeug=0.14.1=py36_0
+  - wheel=0.33.1=py36_0
+  - xz=5.2.4=h14c3975_4
+  - zlib=1.2.11=h7b6447c_3
+prefix: /home/anaconda/anaconda3/envs/adversarial
+
