@@ -42,7 +42,7 @@ The `pgd_attacks` directory contains a [craft_attacks.py](pgd_attacks/craft_atta
 
 The file [generate_pgd_figures.ipynb](pgd_attacks/generate_pgd_figures.ipynb) is a Jupyter notebook that recreates the figures in the paper based on the files produced by `craft_attacks.py`.
 
-Dependencies: requires Python3, keras, tensorflow, cleverhans, numpy, scipy, sklearn.
+Dependencies: see [pgd_environment.yaml](pgd_attacks/pgd_environment.yaml)
 
 
 ## Recreating Patch Attacks and Figures 
