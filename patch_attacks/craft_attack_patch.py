@@ -657,7 +657,7 @@ if __name__ == "__main__":
 
     # Loading the patch file 
     resnet1_patch_target1 = np.load('./patches/resnet1_patch_target1_epoch7.npy')
-    resnet1_patch_target0 = np.load('./patches/resnet1_patch_target0_epoch1.npy')
+    resnet1_patch_target0 = np.load('./patches/resnet1_patch_target0_epoch7.npy')
     
     # # (Optional) Training resnet 1. Comment this out if using pretrained patch
     # train(resnet1, target_label=0, epochs=2, learning_rate=5)
